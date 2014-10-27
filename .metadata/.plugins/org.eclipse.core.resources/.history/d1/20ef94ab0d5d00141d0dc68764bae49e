@@ -1,0 +1,13 @@
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+
+public class MenuPanel extends JPanel{
+	
+	// Components
+		
+		private JButton lineBtn, circleBtn, triangleBtn, squareBtn, myShape,
+				colorBtn, brushSizeBig, brushSizeSmall;
+		private JButton undoBtn, resetBtn, loadBtn, saveBtn;
+
+}

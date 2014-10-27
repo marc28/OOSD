@@ -1,0 +1,199 @@
+import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import DrawingPanel.MyMouseListener;
+
+
+public class MenuPanel extends JPanel{
+	
+	// Components
+		
+		private JButton lineBtn, circleBtn, triangleBtn, squareBtn, myShape,
+				colorBtn, brushSizeBig, brushSizeSmall;
+		private JButton undoBtn, resetBtn, loadBtn, saveBtn;
+		
+		/**
+		 * method to add things to the panel
+		 * TODO Adding PAnel parts
+		 */
+		void addButtonsToMenuPanel() {
+			lineBtn = new JButton("Line");
+			lineBtn.addActionListener(new MyMouseListener());
+			circleBtn = new JButton("Circle");
+			circleBtn.addActionListener(new MyMouseListener());
+			squareBtn = new JButton("Square");
+			squareBtn.addActionListener(new MyMouseListener());
+			triangleBtn = new JButton("Triangle");
+			triangleBtn.addActionListener(new MyMouseListener());
+			myShape = new JButton("My Shape");
+			myShape.addActionListener(new MyMouseListener());
+			colorBtn = new JButton("Colour");
+			colorBtn.addActionListener(new MyMouseListener());
+			undoBtn = new JButton("Undo");
+			undoBtn.addActionListener(new MyMouseListener());
+			resetBtn = new JButton("Reset");
+			resetBtn.addActionListener(new MyMouseListener());
+			loadBtn = new JButton("Load");
+			loadBtn.addActionListener(new MyMouseListener());
+			saveBtn = new JButton("Save");
+			saveBtn.addActionListener(new MyMouseListener());
+			brushSizeBig = new JButton("Bigger");
+			brushSizeBig.addActionListener(new MyMouseListener());
+			brushSizeSmall = new JButton("Smaller");
+			brushSizeSmall.addActionListener(new MyMouseListener());
+			
+			add(lineBtn);
+			add(circleBtn);
+			add(squareBtn);
+			add(triangleBtn);
+			add(myShape);
+			add(colorBtn);
+			add(undoBtn);
+			add(resetBtn);
+			add(loadBtn);
+			add(saveBtn);
+			add(brushSizeBig);
+			add(brushSizeSmall);
+
+		}
+		
+		/**
+		 * Action Listener to determine which shape to draw
+		 * 
+		 */
+		private class MyMouseListener implements ActionListener {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() instanceof JButton) {
+
+					if (e.getSource() == lineBtn) {
+						buttonChoice = 1;
+					} else if (e.getSource() == circleBtn) {
+						buttonChoice = 2;
+					} else if (e.getSource() == squareBtn) {
+						buttonChoice = 3;
+					} else if (e.getSource() == triangleBtn) {
+						buttonChoice = 4;
+					} else if (e.getSource() == myShape) {
+						buttonChoice = 5;
+					} else if (e.getSource() == undoBtn) { // Undo button
+						if (shapes.size() == 0)
+							return;
+						else {
+							if ((shapes.get(shapes.size() - 1)) instanceof Ellipse2D.Float) {
+								// I need this loop to remove all the brush shapes
+								// in the array
+								// because each brush stroke is a separate object.
+								while (true) {
+									int i = shapes.size() - 1;
+									shapes.remove(i);
+									i--;
+									if (i < 0 || !((shapes.get(i) instanceof Ellipse2D.Float))) {
+										break;
+									}
+
+								}
+							} else {
+								shapes.remove(shapes.size() - 1);
+							}
+							repaint();
+						}
+					} else if (e.getSource() == resetBtn) { // Reset button
+						int dialogButton = JOptionPane.YES_NO_OPTION;
+						int dialogResult = JOptionPane.showConfirmDialog(null,
+								"Are you sure you want to reset?", "Reset",
+								dialogButton);
+						if (dialogResult == 0) {
+							shapes.clear(); // removes al th shapes from the
+											// arrayList
+							repaint();
+						}
+					}else if(e.getSource() == brushSizeBig){
+						brushSize += 5;
+						if(brushSize > 150)
+							brushSize = 150; //dont let the brush get too big
+						
+					}else if(e.getSource() == brushSizeSmall){
+						brushSize-=5;
+					if(brushSize <10)
+						brushSize = 10;
+					}else if(e.getSource() == colorBtn){
+						color = JColorChooser.showDialog(null, "Choose a Colour", color);
+
+					}else if(e.getSource() == saveBtn){
+						//Method to write objects to a file
+						ObjectOutputStream  fileOut;
+							try {
+								
+								if(f.exists()) {
+									fileOut = new AppendingObjectOutputStream(new FileOutputStream(f));
+								}else{
+									fileOut = new ObjectOutputStream(new FileOutputStream(f));
+								}
+								for(int i=0;i<shapes.size();i++){
+									fileOut.writeObject(shapes.get(i));
+								}
+								fileOut.close();
+								System.out.println("Success");
+								
+							} catch (IOException ex) {
+								// TODO Auto-generated catch block
+								ex.printStackTrace();
+							}
+						
+						
+					}else if(e.getSource() == loadBtn){
+						Shape aShape;
+						int i =1;
+						int numShapes = 0;
+						try {
+							ObjectInputStream in = new ObjectInputStream(new FileInputStream("shapes.dat"));
+							aShape = (Shape) in.readObject();
+							shapesIn.add(0,aShape);
+							repaint();
+							while(aShape != null){
+								aShape = (Shape)in.readObject();
+								shapesIn.add(i, aShape);
+								repaint();
+								i++;
+							}
+							
+							in.close();
+							
+						} catch (FileNotFoundException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						} catch (IOException e2) {
+							if(i > 1)
+								;
+							else{
+								System.out.println("IOError");
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+							}
+						} catch (ClassNotFoundException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+						
+						
+					}
+				}
+
+			}
+		}// end of MyMouseLsitener
+
+}

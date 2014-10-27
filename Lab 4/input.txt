@@ -1,0 +1,10 @@
+101 chair 25.99 10
+102 table 140.99 10
+103 dresser 22.99 10 10 120 15
+104 forsk 22.99 10 plastic
+105 knives 120.99 10 metal
+106 plates 120.99 10 metal
+107 keyboards 8.20 30
+108 yv8.20 30 11.90
+109 mobile-phone 255.66 30
+110 mp3 8.20 30 65

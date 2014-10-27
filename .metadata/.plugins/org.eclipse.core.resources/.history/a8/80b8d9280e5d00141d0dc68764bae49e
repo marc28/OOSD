@@ -1,0 +1,74 @@
+import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import DrawingPanel.MyMouseListener;
+
+
+public class MenuPanel extends JPanel{
+	
+	// Components
+		
+		private JButton lineBtn, circleBtn, triangleBtn, squareBtn, myShape,
+				colorBtn, brushSizeBig, brushSizeSmall;
+		private JButton undoBtn, resetBtn, loadBtn, saveBtn;
+		
+		/**
+		 * method to add things to the panel
+		 * TODO Adding PAnel parts
+		 */
+		void addButtonsToMenuPanel() {
+			lineBtn = new JButton("Line");
+			//lineBtn.addActionListener(new MyMouseListener());
+			circleBtn = new JButton("Circle");
+			//circleBtn.addActionListener(new MyMouseListener());
+			squareBtn = new JButton("Square");
+			//squareBtn.addActionListener(new MyMouseListener());
+			triangleBtn = new JButton("Triangle");
+			//triangleBtn.addActionListener(new MyMouseListener());
+			myShape = new JButton("My Shape");
+			//myShape.addActionListener(new MyMouseListener());
+			colorBtn = new JButton("Colour");
+			//colorBtn.addActionListener(new MyMouseListener());
+			undoBtn = new JButton("Undo");
+			//undoBtn.addActionListener(new MyMouseListener());
+			resetBtn = new JButton("Reset");
+			//resetBtn.addActionListener(new MyMouseListener());
+			loadBtn = new JButton("Load");
+			//loadBtn.addActionListener(new MyMouseListener());
+			saveBtn = new JButton("Save");
+			//saveBtn.addActionListener(new MyMouseListener());
+			brushSizeBig = new JButton("Bigger");
+			//brushSizeBig.addActionListener(new MyMouseListener());
+			brushSizeSmall = new JButton("Smaller");
+			//brushSizeSmall.addActionListener(new MyMouseListener());
+			
+			add(lineBtn);
+			add(circleBtn);
+			add(squareBtn);
+			add(triangleBtn);
+			add(myShape);
+			add(colorBtn);
+			add(undoBtn);
+			add(resetBtn);
+			add(loadBtn);
+			add(saveBtn);
+			add(brushSizeBig);
+			add(brushSizeSmall);
+
+		}
+		
+		
+}

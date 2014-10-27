@@ -1,0 +1,15 @@
+package BinaryRead;
+
+public class BinaryRead {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	
+	void writeBinary(){
+		String fileName ="binaryTest.bin";
+	}
+
+}

@@ -1,0 +1,82 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+
+
+
+public class MenuPanel extends JPanel{
+	
+	// Components
+		
+		JButton lineBtn, circleBtn, triangleBtn, squareBtn, myShape,
+				colorBtn, brushSizeBig, brushSizeSmall;
+		JButton undoBtn, resetBtn, loadBtn, saveBtn;
+		int buttonChoice = 1, clickCounter = 0, brushSize = 30;
+		
+		public MenuPanel(){
+			
+			Dimension size = getPreferredSize();
+			size.width = 1000;
+			size.height = 500;
+			setPreferredSize(size);
+			addButtonsToMenuPanel(); // adding the buttons to the Panel
+			// Set the layout of the panel
+			setLayout(new FlowLayout());
+			// Connect components to Panel
+	
+		}
+		
+		
+		
+		/**
+		 * method to add things to the panel
+		 * TODO Adding PAnel parts
+		 */
+		void addButtonsToMenuPanel() {
+			lineBtn = new JButton("Line");
+			//lineBtn.addActionListener(new MyMouseListener());
+			circleBtn = new JButton("Circle");
+			//circleBtn.addActionListener(new MyMouseListener());
+			squareBtn = new JButton("Square");
+			//squareBtn.addActionListener(new MyMouseListener());
+			triangleBtn = new JButton("Triangle");
+			//triangleBtn.addActionListener(new MyMouseListener());
+			myShape = new JButton("My Shape");
+			//myShape.addActionListener(new MyMouseListener());
+			colorBtn = new JButton("Colour");
+			//colorBtn.addActionListener(new MyMouseListener());
+			undoBtn = new JButton("Undo");
+			//undoBtn.addActionListener(new MyMouseListener());
+			resetBtn = new JButton("Reset");
+			//resetBtn.addActionListener(new MyMouseListener());
+			loadBtn = new JButton("Load");
+			//loadBtn.addActionListener(new MyMouseListener());
+			saveBtn = new JButton("Save");
+			//saveBtn.addActionListener(new MyMouseListener());
+			brushSizeBig = new JButton("Bigger");
+			//brushSizeBig.addActionListener(new MyMouseListener());
+			brushSizeSmall = new JButton("Smaller");
+			//brushSizeSmall.addActionListener(new MyMouseListener());
+			
+			add(lineBtn);
+			add(circleBtn);
+			add(squareBtn);
+			add(triangleBtn);
+			add(myShape);
+			add(colorBtn);
+			add(undoBtn);
+			add(resetBtn);
+			add(loadBtn);
+			add(saveBtn);
+			add(brushSizeBig);
+			add(brushSizeSmall);
+
+		}
+		
+		
+}
