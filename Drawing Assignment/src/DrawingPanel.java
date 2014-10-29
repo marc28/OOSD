@@ -42,6 +42,7 @@ public class DrawingPanel extends JPanel {
 	private int buttonChoice = 1, clickCounter = 0;
 	private ArrayList<MyShape> shapes = new ArrayList<MyShape>();
 	private ArrayList<Color> colours = new ArrayList<Color>();
+	private ArrayList<Integer> brushSizesList = new ArrayList<Integer>();
 	/*
 	 * private ArrayList<Shape> shapesIn = new ArrayList<Shape>(); private
 	 * ArrayList<Shape> shapesOut = new ArrayList<Shape>();
@@ -53,7 +54,7 @@ public class DrawingPanel extends JPanel {
 	private boolean isDrawing = false, fillOrOutline = true;
 	private Color color = Color.BLUE;
 	private File f = new File("shapes.dat");
-	private float strokeSize = 1;
+	private Integer strokeSize = 1;
 
 	public DrawingPanel() {
 		// TODO Auto-generated constructor stub
@@ -127,6 +128,7 @@ public class DrawingPanel extends JPanel {
 						shapes.add(new Line(start.x, start.y, end.x, end.y));
 						colours.add(color);
 						fillList.add(fillOrOutline);
+						brushSizesList.add(strokeSize);
 						repaint();
 
 					}
@@ -142,6 +144,7 @@ public class DrawingPanel extends JPanel {
 						shapes.add(new Circle(start.x, start.y,end.x, end.y));
 						colours.add(color);
 						fillList.add(fillOrOutline);
+						brushSizesList.add(strokeSize);
 						isDrawing = false;
 						clickCounter = 0;
 						repaint();
@@ -158,6 +161,7 @@ public class DrawingPanel extends JPanel {
 						shapes.add(new Square(start.x, start.y, end.x, end.y));
 						colours.add(color);
 						fillList.add(fillOrOutline);
+						brushSizesList.add(strokeSize);
 						repaint();
 						clickCounter = 0;
 						isDrawing = false;
@@ -177,6 +181,7 @@ public class DrawingPanel extends JPanel {
 						shapes.add(new Triangle(start.x, start.y,middle.x,middle.y ,end.x, end.y));
 						colours.add(color);
 						fillList.add(fillOrOutline);
+						brushSizesList.add(strokeSize);
 						clickCounter = 0;
 						isDrawing = false;
 						repaint();
@@ -202,6 +207,7 @@ public class DrawingPanel extends JPanel {
 						shapes.add(new MyPolygon(start, polyOne, polyTwo, polyThree, polyFour, start));
 						colours.add(color);
 						fillList.add(fillOrOutline);
+						brushSizesList.add(strokeSize);
 						clickCounter = 0;
 						isDrawing = false;
 						repaint();
@@ -232,13 +238,15 @@ public class DrawingPanel extends JPanel {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-		
+
 		g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setRenderingHint(RenderingHints.KEY_RENDERING,
 				RenderingHints.VALUE_RENDER_QUALITY);
-		g2d.setStroke(new BasicStroke(strokeSize));
+		
+		
+
 
 		if (isDrawing) {
 			g2d.setPaint(color);
@@ -275,11 +283,12 @@ public class DrawingPanel extends JPanel {
 			for (MyShape s : shapes) {
 				
 				s.color = colours.get(i);
+
 				// g2d.setColor(colours.get(i));
 				// g2d.setPaint(colours.get(i));
 				s.draw(g2d, fillList.get(i)); // draw is a built in method to draw the saved
 								// shape!!
-				
+				g2d.setStroke(new BasicStroke(brushSizesList.get(i)));
 				// if(fillList.get(i)) g2d.fill((Shape) s);
 				// determines whether the shape should be an outline or filled
 				i++;
@@ -369,6 +378,7 @@ public class DrawingPanel extends JPanel {
 							shapes.remove(shapes.size() - 1);
 							colours.remove(colours.size() - 1);
 							fillList.remove(fillList.size()-1);
+							brushSizesList.remove(brushSizesList.size()-1);
 						repaint();
 					}
 				} else if (e.getSource() == resetBtn) { // Reset button
@@ -378,15 +388,16 @@ public class DrawingPanel extends JPanel {
 						shapes.clear(); // removes al th shapes from the arrayList
 						colours.clear();
 						fillList.clear();
+						brushSizesList.clear();
 						repaint();
 					}
 				}else if(e.getSource() == brushSizeBig){
-					strokeSize ++;
-					if(strokeSize > 5)
-						strokeSize = 5; //dont let the brush get too big
+					strokeSize +=2;
+					if(strokeSize > 20)
+						strokeSize = 20; //dont let the brush get too big
 					
 				}else if(e.getSource() == brushSizeSmall){
-					strokeSize--;
+					strokeSize-=2;
 				if(strokeSize < 1)
 					strokeSize = 1;
 				}else if(e.getSource() == colorBtn){
@@ -406,6 +417,7 @@ public class DrawingPanel extends JPanel {
 								fileOut.writeObject(shapes.get(i));
 								fileOut.writeObject(colours.get(i));
 								fileOut.writeBoolean(fillList.get(i));
+								fileOut.writeObject(brushSizesList.get(i));
 							}
 							fileOut.close();
 							//JOptionPane.showMessageDialog(null, "Saved");
@@ -420,24 +432,27 @@ public class DrawingPanel extends JPanel {
 					MyShape aShape;
 					Color aColor;
 					boolean abool;
+					Integer bs;
 					int i =1;
 					try {
 						shapes.clear(); // removes al th shapes from the arrayList
 						colours.clear();
 						fillList.clear();
+						brushSizesList.clear();
 						repaint();
 						FileDialog fDialog = new FileDialog(new Frame(), "Load", FileDialog.LOAD);
 				        fDialog.setVisible(true);
 				        String path = fDialog.getDirectory() + fDialog.getFile();
 				        File f = new File(path);
 						ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
-						
 						aShape = (MyShape) in.readObject();
 						aColor = (Color) in.readObject();
 						abool = in.readBoolean();
+						bs = (Integer) in.readObject();
 						shapes.add(0,aShape);
 						colours.add(0, aColor);
 						fillList.add(0,abool);
+						brushSizesList.add(0,bs);
 						if(aShape != null){
 							revalidate();
 							repaint();
@@ -445,9 +460,11 @@ public class DrawingPanel extends JPanel {
 							aShape = (MyShape)in.readObject();
 							aColor = (Color) in.readObject();
 							abool = in.readBoolean();
+							bs = (Integer) in.readObject();
 							shapes.add(i, aShape);
 							colours.add(i, aColor);
 							fillList.add(i,abool);
+							brushSizesList.add(i,bs);
 							revalidate();
 							repaint();
 							i++;
