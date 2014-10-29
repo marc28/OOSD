@@ -1,0 +1,28 @@
+import java.awt.Point;
+import java.awt.geom.Ellipse2D;
+
+
+public class Circle extends Shapes{
+
+	Point x, y;
+	
+	
+	public Circle(int x1, int x2,int y1, int y2) {
+		x.x = x1;
+		x.y = x2;
+		y.x = y1;
+		y.y = y2;
+	}
+	
+	
+	/*Circle drawCircle(Point x, Point y){
+		Point center = x;
+		Point outside = y;
+		int radius = (int) center.distance(outside);
+		Point use = new Point(x.x -radius, x.y - radius);
+		return new Ellipse2D.Float(use.x, use.y ,radius*2, radius*2);
+		
+		return new Circle();
+	}
+*/
+}

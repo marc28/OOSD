@@ -1,0 +1,43 @@
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.geom.AffineTransform;
+
+
+public class Square extends MyShape{
+	
+	public Square(){
+		
+	}
+
+	public Square(int a, int b, int c, int d) {
+		super(a,b,c,d);
+	}
+
+
+
+	@Override
+	public MyShape drawShape(int a, int b, int c, int d) {
+		Point start = new Point(a,b);
+		Point end = new Point(c,d);
+		int len = (int)start.distance(end);
+		
+		return new Square(a, b, (len/2), (len/2));
+	}
+	
+	public void draw(Graphics2D g)
+	{
+		g.setColor(color);
+		// Get the current transform
+		AffineTransform saveAT = g.getTransform();
+		 float angle = (float) Math.toDegrees(Math.atan2(y2 - y, x2 - x));
+		// Perform transformation
+		g.rotate(angle, x, y);
+		// Render
+		g.fillRect(x, y, (x2/2), (y2/2));
+		// Restore original transform
+		g.setTransform(saveAT);
+
+	}
+
+
+}

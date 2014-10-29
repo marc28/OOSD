@@ -1,0 +1,45 @@
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Polygon;
+
+
+public class Triangle extends MyShape{
+	Point one, two, three;
+	Polygon mypolygon = new Polygon();
+	Point [] point = new Point[3];
+	
+	public Triangle(){
+		
+	}
+	public Triangle(int a, int b, int c, int d, int e, int f){
+		super(a,b,c,d,e,f);
+	}
+
+	
+
+	
+	@Override
+	public MyShape drawShape(int a, int b, int c, int d) {
+		return new Triangle(new Point(x,y), new Point(a,b), new Point(c,d));
+	}
+	
+	public void draw(Graphics2D g){
+		g.setColor(color);
+		/*int count = 0;
+		if(one != null || two != null){
+		g.drawLine(one.x, one.y, two.x, two.y);
+		count++;
+		}
+		if(two != null || three != null){
+		g.drawLine(two.x, two.y, three.x, three.y);
+			count++;
+			
+		}if(count == 2){
+			Polygon p = new Polygon(new int[] { one.x, two.x,three.x, one.x },new int[] { one.y, two.y, three.y,one.y }, 4);
+			g.fillPolygon(p);
+			System.out.println("filled");
+		}*/
+		g.drawPolygon(pol);
+	}
+
+}

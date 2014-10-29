@@ -1,0 +1,16 @@
+import java.awt.Point;
+
+
+public class Circle extends Shapes{
+
+	Point x, y;
+	
+	
+	public Circle(int x1, int x2,int y1, int y2) {
+		x.x = x1;
+		x.y = x2;
+		y.x = y1;
+		y.y = y2;
+	}
+
+}

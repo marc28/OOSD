@@ -1,0 +1,22 @@
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+
+public class MyPolygon extends MyShape{
+
+	Point one, two, three, four, five;
+	
+	public MyPolygon(Point a, Point b, Point c, Point d, Point e, Point f) {
+		super(a,b,c,d,e,f);
+	}
+
+	@Override
+	public void draw(Graphics2D g, boolean fill) {
+		g.setColor(color);
+		int x []= {one.x, two.x, three.x,four.x,five.x};
+		int y []= {one.y, two.y, three.y,four.y,five.y};
+		g.drawPolygon(x, y, 5);
+		
+	}
+
+}

@@ -1,0 +1,12 @@
+import java.awt.Point;
+
+
+public class MyPolygon {
+
+	Point one, two, three, four, five;
+	
+	public MyPolygon(Point a, Point b, Point c, Point d, Point e) {
+		super(a,b,c,d,e);
+	}
+
+}

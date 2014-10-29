@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="Electronic"/>
-<fullyQualifiedTypeName name="Television"/>
-<fullyQualifiedTypeName name="Mp3Player"/>
-<fullyQualifiedTypeName name="Furniture"/>
-<fullyQualifiedTypeName name="java.io.PrintWriter"/>
-<fullyQualifiedTypeName name="java.io.FileWriter"/>
-<fullyQualifiedTypeName name="java.io.Serializable"/>
-<fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
-<fullyQualifiedTypeName name="Taxable"/>
-<fullyQualifiedTypeName name="java.awt.List"/>
-<fullyQualifiedTypeName name="marcFrame.MenuPanel"/>
-<fullyQualifiedTypeName name="java.awt.Dimension"/>
-<fullyQualifiedTypeName name="marcFrame.CanvasPanel"/>
-<fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
-<fullyQualifiedTypeName name="javax.swing.JLabel"/>
 <fullyQualifiedTypeName name="marcFrame.DrawingPanel"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseMotionAdapter"/>
 <fullyQualifiedTypeName name="java.awt.Stroke"/>
-<fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="javax.swing.BorderFactory"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
@@ -30,7 +14,6 @@
 <fullyQualifiedTypeName name="Draw.MyMouseListener"/>
 <fullyQualifiedTypeName name="java.awt.geom.Path2D"/>
 <fullyQualifiedTypeName name="java.awt.geom.Path2D.Float"/>
-<fullyQualifiedTypeName name="java.awt.Rectangle"/>
 <fullyQualifiedTypeName name="java.awt.geom.Line2D"/>
 <fullyQualifiedTypeName name="java.awt.geom.Line2D.Float"/>
 <fullyQualifiedTypeName name="java.awt.Polygon"/>
@@ -40,8 +23,6 @@
 <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
 <fullyQualifiedTypeName name="java.awt.geom.Ellipse2D"/>
 <fullyQualifiedTypeName name="java.awt.geom.Ellipse2D.Double"/>
-<fullyQualifiedTypeName name="java.awt.Point"/>
-<fullyQualifiedTypeName name="java.awt.geom.AffineTransform"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="javax.swing.border.Border"/>
 <fullyQualifiedTypeName name="javax.swing.JColorChooser"/>
@@ -59,5 +40,24 @@
 <fullyQualifiedTypeName name="DrawingPanel.MyMouseListener"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.awt.FileDialog"/>
+<fullyQualifiedTypeName name="java.awt.Frame"/>
 <fullyQualifiedTypeName name="java.awt.BasicStroke"/>
+<fullyQualifiedTypeName name="java.lang.StrictMath"/>
+<fullyQualifiedTypeName name="java.awt.geom.AffineTransform"/>
+<fullyQualifiedTypeName name="java.awt.geom.Rectangle2D"/>
+<fullyQualifiedTypeName name="java.awt.geom.Rectangle2D.Float"/>
+<fullyQualifiedTypeName name="marc.com.Shape"/>
+<fullyQualifiedTypeName name="Line"/>
+<fullyQualifiedTypeName name="java.awt.Shape"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="java.awt.Rectangle"/>
+<fullyQualifiedTypeName name="marc.com.Square"/>
+<fullyQualifiedTypeName name="Triangle"/>
+<fullyQualifiedTypeName name="Square"/>
+<fullyQualifiedTypeName name="java.awt.Point"/>
+<fullyQualifiedTypeName name="Circle"/>
+<fullyQualifiedTypeName name="MyShape"/>
+<fullyQualifiedTypeName name="MyPolygon"/>
 </qualifiedTypeNameHistroy>

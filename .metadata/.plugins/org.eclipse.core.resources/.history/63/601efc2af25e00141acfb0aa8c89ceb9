@@ -1,0 +1,32 @@
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.geom.Ellipse2D;
+
+public class Circle extends MyShape{
+	//private int radius;
+
+	public Circle(int x, int y, int x2, int y2) {
+		super(x,y,x2,y2);
+		//radius = r;
+	}
+
+	
+	
+	
+	@Override
+	public void draw(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public MyShape drawShape(int a, int b, int c, int d) {
+		Point p1 = new Point(x, y);
+		Point p2 = new Point(x2, y2);
+		int radius = (int) p1.distance(p2);
+		Point use = new Point(p1.x -radius, p1.y - radius);
+		return new Circle(use.x, use.y ,radius*2, radius*2);
+	}
+	
+
+}

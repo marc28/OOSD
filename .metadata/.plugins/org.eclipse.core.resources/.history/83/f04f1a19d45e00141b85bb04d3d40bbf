@@ -1,0 +1,16 @@
+import java.awt.Point;
+
+
+public class Triangle extends MyShape{
+
+	public Triangle(Point a, Point b) {
+		super(a,b);
+	}
+
+	@Override
+	public Polygon drawShape() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

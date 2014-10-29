@@ -1,0 +1,8 @@
+
+public class Triangle extends MyShape{
+
+	public Triangle() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

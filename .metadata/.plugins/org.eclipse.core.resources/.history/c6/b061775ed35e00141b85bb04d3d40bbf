@@ -1,0 +1,20 @@
+import java.awt.Point;
+import java.awt.geom.Ellipse2D;
+
+public class Circle extends MyShape{
+	private int radius;
+
+	public Circle(Point a, Point b, int r) {
+		super(a,b);
+		radius = r;
+	}
+
+	@Override
+	public Circle drawShape(int x, int y, int x2, int y2) {
+			int radius = (int) start.distance(end);
+			Point use = new Point(start.x -radius, start.y - radius);
+			return new Circle(use, use,radius*2);
+			
+	}
+
+}

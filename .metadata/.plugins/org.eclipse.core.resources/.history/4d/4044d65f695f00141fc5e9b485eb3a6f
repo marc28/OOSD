@@ -1,0 +1,11 @@
+import java.awt.Point;
+
+
+public class MyPolygon {
+
+	
+	public MyPolygon(Point a, Point b, Point c, Point d, Point e) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

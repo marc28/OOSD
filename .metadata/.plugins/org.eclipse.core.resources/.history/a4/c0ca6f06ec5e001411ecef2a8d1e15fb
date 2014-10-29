@@ -1,0 +1,16 @@
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.geom.Line2D;
+
+public class Line extends MyShape {
+
+	public Line(Point start, Point end) {
+		super(start, end);
+	}
+
+	@Override
+	public Line drawShape() {
+		return new Line(start, end);
+	}
+
+}
