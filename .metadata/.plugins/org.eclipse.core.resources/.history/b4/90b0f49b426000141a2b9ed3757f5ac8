@@ -1,0 +1,52 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import DrawingPanel.MyMouseListener;
+
+
+public class BottomPanel extends JPanel{
+
+	private JButton undoBtn, resetBtn, loadBtn, saveBtn,brushSizeBig, brushSizeSmall;
+	
+	public BottomPanel() {
+		Dimension size = getPreferredSize();
+		size.width = 800;
+		size.height = 500;
+		setPreferredSize(size);
+		// Set the layout of the panel
+		setLayout(new BorderLayout()); // border Layout for the Buttons
+		setBackground(Color.white); // set the canvas white
+	}
+	
+	/**
+	 * method to add things to the panel TODO Adding PAnel parts
+	 */
+	void addButtonsToMenuPanel() {
+		
+		undoBtn = new JButton("Undo");
+		undoBtn.addActionListener(new MyMouseListener());
+		resetBtn = new JButton("Reset");
+		resetBtn.addActionListener(new MyMouseListener());
+		loadBtn = new JButton("Load");
+		loadBtn.addActionListener(new MyMouseListener());
+		saveBtn = new JButton("Save");
+		saveBtn.addActionListener(new MyMouseListener());
+		brushSizeBig = new JButton("Bigger");
+		brushSizeBig.addActionListener(new MyMouseListener());
+		brushSizeSmall = new JButton("Smaller");
+		brushSizeSmall.addActionListener(new MyMouseListener());
+
+		add(undoBtn);
+		add(resetBtn);
+		add(loadBtn);
+		add(saveBtn);
+		add(brushSizeBig);
+		add(brushSizeSmall);
+
+	} // end of constructor
+
+}

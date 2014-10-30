@@ -1,0 +1,13 @@
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+
+public class BottomPanel extends JPanel{
+
+	private JButton undoBtn, resetBtn, loadBtn, saveBtn,brushSizeBig, brushSizeSmall;
+	
+	public BottomPanel() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

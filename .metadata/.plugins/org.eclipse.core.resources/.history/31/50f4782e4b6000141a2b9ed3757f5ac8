@@ -1,0 +1,69 @@
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JPanel;
+
+public class TopMenu extends JPanel {
+
+	JButton lineBtn, circleBtn, triangleBtn, squareBtn, polygonBtn,
+			colorBtn, fillBtn;
+	
+
+	// variables
+	int buttonChoice = 1;
+	boolean fillOrOutline = true;
+	Color color = Color.BLUE;
+	
+	
+
+	public TopMenu() {
+		// TODO Auto-generated constructor stub
+		Dimension size = getPreferredSize();
+		size.width = 500;
+		size.height = 40;
+		setPreferredSize(size);
+		addButtonsToMenuPanel(); // adding the buttons to the Panel
+		// Set the layout of the panel
+		setLayout(new FlowLayout()); // border Layout for the Buttons
+		//setBackground(Color.G);
+		setVisible(true);
+	}
+
+	/**
+	 * method to add things to the panel TODO Adding PAnel parts
+	 */
+	void addButtonsToMenuPanel() {
+		lineBtn = new JButton("Line");
+		lineBtn.addActionListener(new MyMouseListener());
+		circleBtn = new JButton("Circle");
+		circleBtn.addActionListener(new MyMouseListener());
+		squareBtn = new JButton("Square");
+		squareBtn.addActionListener(new MyMouseListener());
+		triangleBtn = new JButton("Triangle");
+		triangleBtn.addActionListener(new MyMouseListener());
+		polygonBtn = new JButton("Polygon");
+		polygonBtn.addActionListener(new MyMouseListener());
+		colorBtn = new JButton("Colour");
+		colorBtn.addActionListener(new MyMouseListener());
+		fillBtn = new JButton("Outline");
+		fillBtn.addActionListener(new MyMouseListener());
+		add(lineBtn);
+		add(circleBtn);
+		add(squareBtn);
+		add(triangleBtn);
+		add(polygonBtn);
+		add(colorBtn);
+		add(fillBtn);
+
+	} // end of constructor
+
+}

@@ -14,12 +14,15 @@ public class Triangle extends MyShape implements Serializable {
 
 	public Triangle(int a, int b, int c, int d, int e, int f) {
 		super(a, b, c, d, e, f);
+		this.one = new Point(a,b);
+		this.two = new Point(c,d);
+		this.three = new Point(e,f);
 	}
 
 	public void draw(Graphics2D g, boolean fill) {
 		g.setColor(color);
-		int x[] = { start.x, middle.x, end.x };
-		int y[] = { start.y, middle.y, end.y };
+		int x[] = { one.x, two.x, three.x };
+		int y[] = { one.y, two.y, three.y };
 		g.drawPolygon(x, y, 3);
 		if (fill == true)
 			g.fillPolygon(x, y, 3);

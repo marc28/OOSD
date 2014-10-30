@@ -1,0 +1,8 @@
+
+public class MyMouseListener {
+
+	public MyMouseListener() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

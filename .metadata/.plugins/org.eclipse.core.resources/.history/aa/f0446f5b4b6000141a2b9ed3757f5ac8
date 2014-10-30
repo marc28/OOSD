@@ -1,0 +1,103 @@
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JPanel;
+
+public class TopMenu extends JPanel {
+
+	JButton lineBtn, circleBtn, triangleBtn, squareBtn, polygonBtn,
+			colorBtn, fillBtn;
+	JPanel bottomPanel = new JPanel();
+
+	// variables
+	int buttonChoice = 1;
+	boolean fillOrOutline = true;
+	Color color = Color.BLUE;
+	
+	
+
+	public TopMenu() {
+		// TODO Auto-generated constructor stub
+		Dimension size = getPreferredSize();
+		size.width = 500;
+		size.height = 40;
+		setPreferredSize(size);
+		addButtonsToMenuPanel(); // adding the buttons to the Panel
+		// Set the layout of the panel
+		setLayout(new FlowLayout()); // border Layout for the Buttons
+		//setBackground(Color.G);
+		setVisible(true);
+	}
+
+	/**
+	 * method to add things to the panel TODO Adding PAnel parts
+	 */
+	void addButtonsToMenuPanel() {
+		lineBtn = new JButton("Line");
+		lineBtn.addActionListener(new MyMouseListener());
+		circleBtn = new JButton("Circle");
+		circleBtn.addActionListener(new MyMouseListener());
+		squareBtn = new JButton("Square");
+		squareBtn.addActionListener(new MyMouseListener());
+		triangleBtn = new JButton("Triangle");
+		triangleBtn.addActionListener(new MyMouseListener());
+		polygonBtn = new JButton("Polygon");
+		polygonBtn.addActionListener(new MyMouseListener());
+		colorBtn = new JButton("Colour");
+		colorBtn.addActionListener(new MyMouseListener());
+		fillBtn = new JButton("Outline");
+		fillBtn.addActionListener(new MyMouseListener());
+		add(lineBtn);
+		add(circleBtn);
+		add(squareBtn);
+		add(triangleBtn);
+		add(polygonBtn);
+		add(colorBtn);
+		add(fillBtn);
+
+	} // end of constructor
+
+	/**
+	 * Action Listener to determine which shape to draw
+	 * 
+	 */
+	private class MyMouseListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() instanceof JButton) {
+				if (e.getSource() == lineBtn) {
+					buttonChoice = 1;
+				} else if (e.getSource() == circleBtn) {
+					buttonChoice = 2;
+				} else if (e.getSource() == squareBtn) {
+					buttonChoice = 3;
+				} else if (e.getSource() == triangleBtn) {
+					buttonChoice = 4;
+				} else if (e.getSource() == polygonBtn) {
+					buttonChoice = 5;
+				}else if(e.getSource() == fillBtn){
+					if(fillOrOutline == true){
+						fillOrOutline = false;
+						fillBtn.setText("Fill");
+					}else{
+						fillOrOutline = true;
+						fillBtn.setText("Outline");
+					}
+				}else if(e.getSource() == colorBtn){
+					color = JColorChooser.showDialog(null, "Choose a Colour", color);
+
+				}
+
+			}
+		}
+	}// end of MyMouseLsitener
+}

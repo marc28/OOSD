@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="marcFrame.DrawingPanel"/>
-<fullyQualifiedTypeName name="java.awt.event.MouseMotionAdapter"/>
-<fullyQualifiedTypeName name="java.awt.Stroke"/>
-<fullyQualifiedTypeName name="javax.swing.JFrame"/>
-<fullyQualifiedTypeName name="javax.swing.BorderFactory"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
 <fullyQualifiedTypeName name="java.awt.Paint"/>
 <fullyQualifiedTypeName name="java.awt.GradientPaint"/>
-<fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.awt.event.WindowEvent"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="Draw.MyMouseListener"/>
@@ -32,11 +26,9 @@
 <fullyQualifiedTypeName name="java.io.OutputStream"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="MenuPanel"/>
-<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
 <fullyQualifiedTypeName name="java.awt.GridBagConstraints"/>
 <fullyQualifiedTypeName name="java.awt.GridBagLayout"/>
 <fullyQualifiedTypeName name="java.awt.Canvas"/>
-<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="DrawingPanel.MyMouseListener"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
@@ -57,7 +49,15 @@
 <fullyQualifiedTypeName name="Triangle"/>
 <fullyQualifiedTypeName name="Square"/>
 <fullyQualifiedTypeName name="java.awt.Point"/>
-<fullyQualifiedTypeName name="Circle"/>
 <fullyQualifiedTypeName name="MyShape"/>
 <fullyQualifiedTypeName name="MyPolygon"/>
+<fullyQualifiedTypeName name="Circle"/>
+<fullyQualifiedTypeName name="BottomPanel"/>
+<fullyQualifiedTypeName name="MyMouseListener"/>
+<fullyQualifiedTypeName name="TopMenu"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
+<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+<fullyQualifiedTypeName name="DrawingPanel2"/>
+<fullyQualifiedTypeName name="DrawingPanel"/>
 </qualifiedTypeNameHistroy>

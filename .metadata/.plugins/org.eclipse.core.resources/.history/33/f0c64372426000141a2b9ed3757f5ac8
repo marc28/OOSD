@@ -1,0 +1,23 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+
+public class BottomPanel extends JPanel{
+
+	private JButton undoBtn, resetBtn, loadBtn, saveBtn,brushSizeBig, brushSizeSmall;
+	
+	public BottomPanel() {
+		Dimension size = getPreferredSize();
+		size.width = 800;
+		size.height = 500;
+		setPreferredSize(size);
+		// Set the layout of the panel
+		setLayout(new BorderLayout()); // border Layout for the Buttons
+		setBackground(Color.white); // set the canvas white
+	}
+
+}

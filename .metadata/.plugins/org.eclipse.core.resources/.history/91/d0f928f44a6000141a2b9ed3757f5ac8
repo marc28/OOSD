@@ -1,0 +1,41 @@
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
+
+public class Driver {
+
+	public Driver() {
+		JFrame frame = new JFrame("Drawing");
+		frame.setVisible(true);
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		TopMenu topMenu = new TopMenu();
+		MyMouseListener m = new MyMouseListener(topMenu);
+		BottomPanel bottomPanel = new BottomPanel();
+		//DrawingPanel2 obj = new DrawingPanel2(topMenu, bottomPanel);
+		DrawingPanel obj = new DrawingPanel();
+		
+		//frame.add(topMenu, BorderLayout.NORTH);
+		//frame.add(bottomPanel,BorderLayout.SOUTH);
+		frame.add(obj);
+		
+		frame.pack();
+		obj.drawing();
+		
+	}
+	
+	public static void main(String args []){
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				new Driver();
+			}
+		});
+
+	
+	}
+}
