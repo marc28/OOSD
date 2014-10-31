@@ -1,10 +1,6 @@
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.RenderingHints;
-
-import javax.swing.JPanel;
 
 public abstract class MyShape{
 
@@ -12,16 +8,12 @@ public abstract class MyShape{
 	Graphics2D g2d;
 	Color color;
 	Point start, end, middle, polyOne, polyTwo, polyThree;
-	public MyShape(){
-		
-	}
+	public MyShape(){}
+	
 	public MyShape(int a, int b, int c, int d){
 		this.start = new Point(a,b);
 		this.end = new Point(c,d);
-		/*x = a;
-		y = b;
-		x2 = c;
-		y2 = d;*/
+
 	}
 	public MyShape(int a, int b, int c, int d, int e, int f){
 		this.start = new Point(a,b);
@@ -38,29 +30,8 @@ public abstract class MyShape{
 		start = f;
 	}
 
-	//public abstract MyShape drawShape(int a, int b, int c, int d);
-	//public abstract MyShape drawShape(int a, int b, int c, int d, int e, int f);
+
 	
-	public abstract void draw(Graphics2D g, boolean fill);/*{
-		g.setColor(color);
-		g.drawLine(x, y, x2, y2);
-	}*/
+	public abstract void draw(Graphics2D g, boolean fill);
 	
-
-
-
 }
-
-
-/*super.paint(g);
-
-g2d = (Graphics2D) g;
-g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-		RenderingHints.VALUE_ANTIALIAS_ON);
-g2d.setRenderingHint(RenderingHints.KEY_RENDERING,
-		RenderingHints.VALUE_RENDER_QUALITY);
-
-g2d.setColor(color);
-g2d.setPaint(color);
-
-}*/ // END of paintComponent()

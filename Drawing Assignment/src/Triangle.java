@@ -4,14 +4,13 @@ import java.awt.Polygon;
 import java.io.Serializable;
 
 public class Triangle extends MyShape implements Serializable {
+
+
 	Point one, two, three;
 	Polygon mypolygon = new Polygon();
 	Point[] point = new Point[3];
 
-	public Triangle() {
-
-	}
-
+	public Triangle(){}
 	public Triangle(int a, int b, int c, int d, int e, int f) {
 		super(a, b, c, d, e, f);
 		this.one = new Point(a,b);

@@ -1,14 +1,16 @@
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.geom.Ellipse2D;
 import java.io.Serializable;
 
 public class Circle extends MyShape implements Serializable{
-	//private int radius;
+
+	/**
+	 * 
+	 */
+
 	Point start, end;
-	public Circle(){
-		
-	}
+	
+	public Circle(){}
 	
 	public Circle(int x, int y, int x2, int y2) {
 		super(x,y,x2,y2);

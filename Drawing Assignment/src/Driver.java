@@ -13,11 +13,8 @@ public class Driver {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		TopMenu topMenu = new TopMenu();
-		DrawingPanel2 obj = new DrawingPanel2(topMenu);
-		//DrawingPanel obj = new DrawingPanel();
-		
+		DrawingPanel obj = new DrawingPanel(topMenu);
 		frame.add(topMenu, BorderLayout.NORTH);
-		//frame.add(bottomPanel,BorderLayout.SOUTH);
 		frame.add(obj);
 		
 		frame.pack();

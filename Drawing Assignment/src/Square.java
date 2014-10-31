@@ -5,11 +5,10 @@ import java.io.Serializable;
 
 
 public class Square extends MyShape implements Serializable{
-	Point start,end;
-	public Square(){
-		
-	}
 
+	Point start,end;
+	public Square(){}
+	
 	public Square(int a, int b, int c, int d) {
 		super(a,b,c,d);
 		this.start = new Point(a,b);

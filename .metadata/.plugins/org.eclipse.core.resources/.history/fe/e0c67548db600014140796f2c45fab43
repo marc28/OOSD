@@ -1,0 +1,8 @@
+
+public class Brush {
+
+	public Brush() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

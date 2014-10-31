@@ -1,0 +1,28 @@
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+
+public class Brush extends MyShape{
+	Point start,end;
+
+	public Brush() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Brush(int a, int b, int c, int d){
+		super(a,b,c,d);
+		this.start = new Point(a,b);
+		this.end = new Point(c,d);
+	}
+
+	@Override
+	public void draw(Graphics2D g, boolean fill) {
+		g.setColor(color);
+		int radius = (int)Math.round(start.distance(end));
+		if(fill == true)
+		g.fillOval(this.start.x - radius, this.start.y - radius, radius*2, radius*2);
+		g.drawOval(this.start.x - radius, this.start.y - radius, radius*2, radius*2);
+		
+	}
+
+}

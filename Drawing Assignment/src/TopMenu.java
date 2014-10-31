@@ -1,5 +1,4 @@
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FileDialog;
@@ -7,8 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,6 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
@@ -25,17 +23,18 @@ import javax.swing.JPanel;
 
 
 public class TopMenu extends JPanel {
-
+	//TODO
 	JButton lineBtn, circleBtn, triangleBtn, squareBtn, polygonBtn,
 			colorBtn, fillBtn;
-	JPanel bottomPanel = new JPanel();
+	
 	
 
 	// variables
 	int buttonChoice = 1;
 	boolean fillOrOutline = true;
 	Color color = Color.BLUE;
-	DrawingPanel2 dp2;
+	DrawingPanel dp2;
+	Dimension d = new Dimension(60, 28);
 	
 	//======================
 	JButton undoBtn, resetBtn, loadBtn, saveBtn,brushSizeBig, brushSizeSmall;
@@ -54,9 +53,9 @@ public class TopMenu extends JPanel {
 	
 
 	public TopMenu() {
-		// TODO Auto-generated constructor stub
+
 		Dimension size = getPreferredSize();
-		size.width = 500;
+		size.width = 800;
 		size.height = 40;
 		setPreferredSize(size);
 		addButtonsToMenuPanel(); // adding the buttons to the Panel
@@ -65,38 +64,69 @@ public class TopMenu extends JPanel {
 		//setBackground(Color.G);
 		setVisible(true);
 		//bottomPanel.setLayout(new FlowLayout());
-		add(bottomPanel);
+	
 	}
 
 	/**
 	 * method to add things to the panel TODO Adding PAnel parts
 	 */
 	void addButtonsToMenuPanel() {
-		lineBtn = new JButton("Line");
+		lineBtn = new JButton();
+		lineBtn.setPreferredSize(d);
+		lineBtn.setIcon(new ImageIcon("src\\images\\line.png"));
 		lineBtn.addActionListener(new MyMouseListener());
-		circleBtn = new JButton("Circle");
+		
+		circleBtn = new JButton();
+		circleBtn.setPreferredSize(d);
+		circleBtn.setIcon(new ImageIcon("src\\images\\circle.png"));
 		circleBtn.addActionListener(new MyMouseListener());
-		squareBtn = new JButton("Square");
+		
+		squareBtn = new JButton();
+		squareBtn.setPreferredSize(d);
+		squareBtn.setIcon(new ImageIcon("src\\images\\square.png"));
 		squareBtn.addActionListener(new MyMouseListener());
-		triangleBtn = new JButton("Triangle");
+		
+		triangleBtn = new JButton();
+		triangleBtn.setPreferredSize(d);
+		triangleBtn.setIcon(new ImageIcon("src\\images\\triangle.png"));
 		triangleBtn.addActionListener(new MyMouseListener());
-		polygonBtn = new JButton("Polygon");
+		
+		polygonBtn = new JButton();
+		polygonBtn.setPreferredSize(d);
+		polygonBtn.setIcon(new ImageIcon("src\\images\\poly.png"));
 		polygonBtn.addActionListener(new MyMouseListener());
+		
 		colorBtn = new JButton("Colour");
+		colorBtn.setPreferredSize(d);
+		colorBtn.setIcon(new ImageIcon("src\\images\\color.png"));
 		colorBtn.addActionListener(new MyMouseListener());
+		
 		fillBtn = new JButton("Outline");
 		fillBtn.addActionListener(new MyMouseListener());
+		
 		undoBtn = new JButton("Undo");
+		undoBtn.setPreferredSize(new Dimension(70,28));
 		undoBtn.addActionListener(new MyMouseListener());
+		
 		resetBtn = new JButton("Reset");
+		resetBtn.setPreferredSize(new Dimension(70,28));
+		
 		resetBtn.addActionListener(new MyMouseListener());
+		
 		loadBtn = new JButton("Load");
 		loadBtn.addActionListener(new MyMouseListener());
+		
 		saveBtn = new JButton("Save");
 		saveBtn.addActionListener(new MyMouseListener());
-		brushSizeBig = new JButton("Bigger");
+		
+		brushSizeBig = new JButton();
+		brushSizeBig.setPreferredSize(d);
+		brushSizeBig.setIcon(new ImageIcon("src\\images\\bigger.png"));
 		brushSizeBig.addActionListener(new MyMouseListener());
-		brushSizeSmall = new JButton("Smaller");
+		
+		brushSizeSmall = new JButton();
+		brushSizeSmall.setPreferredSize(d);
+		brushSizeSmall.setIcon(new ImageIcon("src\\images\\smaller.png"));
 		brushSizeSmall.addActionListener(new MyMouseListener());
 		add(lineBtn);
 		add(circleBtn);
@@ -104,14 +134,15 @@ public class TopMenu extends JPanel {
 		add(triangleBtn);
 		add(polygonBtn);
 		add(colorBtn);
+		add(brushSizeBig);
+		add(brushSizeSmall);
 		add(fillBtn);
 		//
-		bottomPanel.add(undoBtn);
-		bottomPanel.add(resetBtn);
-		bottomPanel.add(loadBtn);
-		bottomPanel.add(saveBtn);
-		bottomPanel.add(brushSizeBig);
-		bottomPanel.add(brushSizeSmall);
+		add(undoBtn);
+		add(resetBtn);
+		add(loadBtn);
+		add(saveBtn);
+		
 
 	} // end of constructor
 
@@ -275,7 +306,7 @@ public class TopMenu extends JPanel {
 	}// end of MyMouseLsitener
 	}
 	
-	public void setDrawingPanel2(DrawingPanel2 dp2){
+	public void setDrawingPanel2(DrawingPanel dp2){
 		this.dp2 = dp2;
 	}
 }

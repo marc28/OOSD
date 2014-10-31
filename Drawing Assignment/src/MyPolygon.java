@@ -5,8 +5,9 @@ import java.io.Serializable;
 
 public class MyPolygon extends MyShape implements Serializable{
 
-	
 	Point one,two, three, four, five,six;
+
+	public MyPolygon(){}
 	public MyPolygon(Point a, Point b, Point c, Point d, Point e, Point f) {
 		super(a,b,c,d,e,f);
 		one = new Point(a);
