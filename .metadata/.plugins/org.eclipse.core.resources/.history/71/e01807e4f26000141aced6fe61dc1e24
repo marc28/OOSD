@@ -1,8 +1,8 @@
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FileDialog;
-import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,12 +15,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 
 
 public class TopMenu extends JPanel {
@@ -50,7 +50,7 @@ public class TopMenu extends JPanel {
 	FileDialog fDialogLoad = new FileDialog(new Frame(),"Load", FileDialog.LOAD);
 	String pathLoad = fDialogLoad.getDirectory()+ fDialogLoad.getFile();
 	File f = new File(pathSave);
-	
+	Box theBox = Box.createHorizontalBox();
 	
 
 	public TopMenu() {
@@ -60,12 +60,14 @@ public class TopMenu extends JPanel {
 		size.height = 40;
 		setPreferredSize(size);
 		addButtonsToMenuPanel(); // adding the buttons to the Panel
+		//this.setLocation(null);
+		
 		// Set the layout of the panel
-		setLayout(new FlowLayout()); // border Layout for the Buttons
+		setLayout(new BorderLayout()); // border Layout for the Buttons
+		add(theBox);
 		//setBackground(Color.G);
 		setVisible(true);
 		//bottomPanel.setLayout(new FlowLayout());
-		setDesign();
 	
 	}
 
@@ -104,7 +106,6 @@ public class TopMenu extends JPanel {
 		colorBtn.addActionListener(new MyMouseListener());
 		
 		fillBtn = new JButton("Outline");
-		fillBtn.setPreferredSize(new Dimension(75,28));
 		fillBtn.addActionListener(new MyMouseListener());
 		
 		undoBtn = new JButton("Undo");
@@ -131,20 +132,20 @@ public class TopMenu extends JPanel {
 		brushSizeSmall.setPreferredSize(d);
 		brushSizeSmall.setIcon(new ImageIcon("src\\images\\smaller.png"));
 		brushSizeSmall.addActionListener(new MyMouseListener());
-		add(lineBtn);
-		add(circleBtn);
-		add(squareBtn);
-		add(triangleBtn);
-		add(polygonBtn);
-		add(colorBtn);
-		add(brushSizeBig);
-		add(brushSizeSmall);
-		add(fillBtn);
+		theBox.add(lineBtn);
+		theBox.add(circleBtn);
+		theBox.add(squareBtn);
+		theBox.add(triangleBtn);
+		theBox.add(polygonBtn);
+		theBox.add(colorBtn);
+		theBox.add(brushSizeBig);
+		theBox.add(brushSizeSmall);
+		theBox.add(fillBtn);
 		//
-		add(undoBtn);
-		add(resetBtn);
-		add(loadBtn);
-		add(saveBtn);
+		theBox.add(undoBtn);
+		theBox.add(resetBtn);
+		theBox.add(loadBtn);
+		theBox.add(saveBtn);
 		
 
 	} // end of constructor
@@ -312,14 +313,4 @@ public class TopMenu extends JPanel {
 	public void setDrawingPanel2(DrawingPanel dp2){
 		this.dp2 = dp2;
 	}
-	
-	//Method for setting the Nimbus feel and look
-			public final static void setDesign() {
-				try{
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-				}catch(Exception e){
-					System.out.println("Prob with setDesign()");
-				}
-				
-			}
 }

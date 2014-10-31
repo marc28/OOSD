@@ -65,7 +65,6 @@ public class TopMenu extends JPanel {
 		//setBackground(Color.G);
 		setVisible(true);
 		//bottomPanel.setLayout(new FlowLayout());
-		setDesign();
 	
 	}
 
@@ -104,7 +103,7 @@ public class TopMenu extends JPanel {
 		colorBtn.addActionListener(new MyMouseListener());
 		
 		fillBtn = new JButton("Outline");
-		fillBtn.setPreferredSize(new Dimension(75,28));
+		fillBtn.setPreferredSize(d);
 		fillBtn.addActionListener(new MyMouseListener());
 		
 		undoBtn = new JButton("Undo");
