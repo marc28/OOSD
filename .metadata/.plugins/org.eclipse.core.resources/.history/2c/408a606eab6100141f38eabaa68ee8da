@@ -1,0 +1,55 @@
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+/**
+ * MyShape is the Super class of all the sub class shapes.
+ * It is an abstract class with 4 constructors and an abstract
+ * method, draw() that forces all subclass to instantiate.
+ * 
+ * 
+ * @author marc
+ *
+ */
+
+public abstract class MyShape{
+
+	Color color; //IIn each draw() method, the colour is set.
+	Point start, end, middle, polyOne, polyTwo, polyThree;
+	
+	/**
+	 * Default Constructor
+	 */
+	public MyShape(){
+		
+	}
+	
+	/**
+	 * Constructor for shapes with two points: Circle, Square
+	 * 
+	 */
+	public MyShape(int a, int b, int c, int d){
+		this.start = new Point(a,b);
+		this.end = new Point(c,d);
+
+	}
+	public MyShape(int a, int b, int c, int d, int e, int f){
+		this.start = new Point(a,b);
+		this.middle = new Point(c,d);
+		this.end = new Point(e,f);
+	}
+	
+	public MyShape(Point a, Point b, Point c, Point d, Point e, Point f){
+		start = a;
+		polyOne = b;
+		polyTwo = c;
+		polyThree = d;
+		end = e;
+		start = f;
+	}
+
+
+	
+	public abstract void draw(Graphics2D g, boolean fill);
+	
+}

@@ -10,84 +10,97 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
 
-public class DrawingPanel extends JPanel {
-	// Components
-	private TopMenu topMenu;
-
-	private int clickCounter = 0;
+public class DrawingPanel extends JPanel implements Serializable {
 	
+	/**
+	 * Variables
+	 */
+	private TopMenu topMenu;
+	private int clickCounter = 0;
 	private Graphics2D g2d;
-	private Point start, end, middle, polyOne, polyTwo, polyThree, polyFour,
-			temp;
+	private Point start, end, middle, polyOne, polyTwo, 
+				polyThree, polyFour, temp;
+	private static final long serialVersionUID = 1L;
 	private boolean isDrawing = false;
 
+	
+	/**
+	 * Default Constructor
+	 */
 	public DrawingPanel() {
 		this.repaint();
 	}
 
+	/**
+	 * 
+	 * Constructor which takes TopMenu as a parameter so
+	 * Drawing Panel can access certain variables within topMenu
+	 *TODO Constructor 
+	 */
 	public DrawingPanel(TopMenu t) {
 		topMenu = t;
-		t.setDrawingPanel2(this);
+		t.setDrawingPanel2(this); //necessary for 2 separate Panels communicate
 
-		// TODO Auto-generated constructor stub
+		//Set the size 
 		Dimension size = getPreferredSize();
 		size.width = 1100;
 		size.height = 500;
 		setPreferredSize(size);
+		
 		// Set the layout of the panel
 		setLayout(new BorderLayout()); // border Layout for the Buttons
 		setBackground(Color.white); // set the canvas white
-		// Connect components to Panel
-		// add(topMenu, BorderLayout.PAGE_START);
-		// add(topMenu, BorderLayout.PAGE_END);
 		repaint();
 
+		/**
+		 * Add a Mouse Motion Listener for mouseMoved()
+		 */
 		addMouseMotionListener(new MouseMotionListener() {
-			// TODO Mouse moved
+			
+			/**
+			 * Mouse moved is used for dynamically drawing the shape to see what it will look like
+			 */
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				if (isDrawing) {
-					if (topMenu.buttonChoice == 1) {
+				//Boolean isDrawing is used to control the outline to be drawn during
+				//the actual process of making a shape
+				//TODO Mouse Moved
+				if (isDrawing) { 
+					if (topMenu.buttonChoice == 1) { //Line Shape
 						temp = new Point(e.getX(), e.getY());
-					} else if (topMenu.buttonChoice == 2) {
+					} else if (topMenu.buttonChoice == 2) { //Circle Shape
 						temp = new Point(e.getX(), e.getY());
-					} else if (topMenu.buttonChoice == 3) {
+					} else if (topMenu.buttonChoice == 3) { //Square Shape
 						temp = new Point(e.getX(), e.getY());
-					} else if (topMenu.buttonChoice == 4) {
-						temp = new Point(e.getX(), e.getY());
-						if (clickCounter == 2)
-							temp = new Point(e.getX(), e.getY());
-					} else if (topMenu.buttonChoice == 5) {
-						// lineShape = drawLine(start.x, start.y, e.getX(),
-						// e.getY());
+					} else if (topMenu.buttonChoice == 4) { //Triangle Shape
 						temp = new Point(e.getX(), e.getY());
 						if (clickCounter == 2)
 							temp = new Point(e.getX(), e.getY());
-						// lineShape = drawLine(polyOne.x, polyOne.y, e.getX(),
-						// e.getY());
+					} else if (topMenu.buttonChoice == 5) { //Polygon Shape
+						temp = new Point(e.getX(), e.getY());
+						if (clickCounter == 2)
+							temp = new Point(e.getX(), e.getY());
 						if (clickCounter == 3)
 							temp = new Point(e.getX(), e.getY());
-						// lineShape = drawLine(polyTwo.x, polyTwo.y, e.getX(),
-						// e.getY());
 						if (clickCounter == 4)
 							temp = new Point(e.getX(), e.getY());
-						// lineShape = drawLine(polyThree.x, polyThree.y,
-						// e.getX(), e.getY());
-
 					}
-					repaint();
-				}
+					repaint(); //keep repainting as your moving the mouse
+				} //end of isDrawing if statement
 
-			} // no use
+			} // end of MouseMoved
 
 			@Override
-			public void mouseDragged(MouseEvent e) {
-			} // no use
-		});
+			public void mouseDragged(MouseEvent e) {} // no use
+		}); //end of Mouse Motion Listener 
 
+		/**
+		 * Add a Mouse Listener for Mouse Pressed
+		 */
 		addMouseListener(new MouseAdapter() {
 			// TODO Mouse Pressed
 			@Override
@@ -95,17 +108,25 @@ public class DrawingPanel extends JPanel {
 				// 1. line
 				if (topMenu.buttonChoice == 1) {
 					if (clickCounter == 0) {
+						//Starting Point
 						start = new Point(e.getX(), e.getY());
 						clickCounter++;
 						isDrawing = true;
 					} else if (clickCounter == 1) {
+						//Finished Drawing
 						end = new Point(e.getX(), e.getY());
+						
+						//Update all the ArrayLists
 						topMenu.shapes.add(new Line(start.x, start.y, end.x,end.y));
 						topMenu.colours.add(topMenu.color);
 						topMenu.fillList.add(true);
 						topMenu.brushSizesList.add(topMenu.strokeSize);
+						
+						//Set the isDrawing to false as shape has been completed
 						isDrawing = false;
 						clickCounter = 0;
+						
+						//repaint
 						repaint();
 
 					}
@@ -197,25 +218,27 @@ public class DrawingPanel extends JPanel {
 			} // end of mosePressed
 
 			@Override
-			public void mouseExited(MouseEvent e) {
-			} // no use
+			public void mouseExited(MouseEvent e) {} // no use
 
 			@Override
-			public void mouseEntered(MouseEvent e) {
-			} // no use
+			public void mouseEntered(MouseEvent e) {} // no use
 
 			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
+			public void mouseClicked(MouseEvent e) {} //no use
 
 			@Override
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {}// no use
 
-			}// no use
+		}); //End of Mouse Listener
+	} //End of Constructor
 
-		});
-	}
-
+	
+	/**
+	 * This paint method is called every time you see repaint(), lines 57, 148,
+	 * 214 for example 
+	 * Its the heart of drawing the shapes
+	 * TODO Paint Method
+	 */
 	public void paint(Graphics g) {
 		super.paint(g);
 
@@ -225,52 +248,66 @@ public class DrawingPanel extends JPanel {
 		g2d.setRenderingHint(RenderingHints.KEY_RENDERING,
 				RenderingHints.VALUE_RENDER_QUALITY);
 
+		/**
+		 * Here is where the shapes are being dynamically drawn
+		 * before they are complete. It occurs
+		 * after you first click to start drawing and ends when 
+		 * you have finished drawing the shape.
+		 * 
+		 * You can see I use a 'temp' Point variable in the methods to constantly
+		 * keep updating the shape as it drawn.
+		 * 
+		 * A click counter is also used in some shapes to determine where
+		 * the next dynamic line should be drawn.
+		 */
 		if (isDrawing) {
 			g2d.setPaint(topMenu.color);
-			if (topMenu.buttonChoice == 1) // line
+			if (topMenu.buttonChoice == 1) // Line
 				g2d.drawLine(start.x, start.y, temp.x, temp.y);
-			else if (topMenu.buttonChoice == 2) { // circle
+			
+			else if (topMenu.buttonChoice == 2) { // Circle
 				int r = (int) Math.round(start.distance(temp));
 				g2d.drawOval(start.x - r, start.y - r, 2 * r, 2 * r);
-			} else if (topMenu.buttonChoice == 3) {
-
+				
+			} else if (topMenu.buttonChoice == 3) { //Square
 				AffineTransform saveAT = g2d.getTransform();
-				double angle = Math.toRadians(0)
-						+ (Math.atan2((temp.y - start.y), (temp.x - start.x)));
-				// Perform transformation
-
+				double angle = Math.toRadians(0)+ (Math.atan2((temp.y - start.y), (temp.x - start.x)));
 				int width = (int) Math.round(start.distance(temp));
 				g2d.rotate(angle, start.x, start.y);
-
 				g2d.drawRect(start.x, start.y, width, width);
-				// Restore original transform
-
 				g2d.setTransform(saveAT);
 
-			} else if (topMenu.buttonChoice == 4) {
+			} else if (topMenu.buttonChoice == 4) { //Triangle
 				g2d.drawLine(start.x, start.y, temp.x, temp.y);
 				if (clickCounter == 2)
 					g2d.drawLine(middle.x, middle.y, temp.x, temp.y);
-			} else if (topMenu.buttonChoice == 5)
+				
+			} else if (topMenu.buttonChoice == 5) // Polygon
 				g2d.drawLine(start.x, start.y, temp.x, temp.y);
 		}
 
+		/**
+		 *  The loop below draws out ONLY the completed shapes that are stored in the
+		 *  ArrayList. It also draws sets the brushSize, Colour and whether it is 
+		 *  an Outline or Filled Shape. The magic of Polymorphism is seen in action here
+		 *  MyShape 's' doesn't care which shape it is as they all are subclasses of myShape.
+		 *  It calls the appropriate draw() method depending on the shape.
+		 *  
+		 */
 		int i = 0;
+		for (MyShape s : topMenu.shapes) {
+			g2d.setStroke(new BasicStroke(topMenu.brushSizesList.get(i)));
+			s.color = topMenu.colours.get(i);
+			s.draw(g2d, topMenu.fillList.get(i));
+			i++;
+		}
 
-		
-			for (MyShape s : topMenu.shapes) {
-				g2d.setStroke(new BasicStroke(topMenu.brushSizesList.get(i)));
-				s.color = topMenu.colours.get(i);
-				
-				s.draw(g2d, topMenu.fillList.get(i));
-				i++;
-			}
-		
-
-	} // END of paintComponent()
+	} // END of paint(Graphics g)
 
 	/**
 	 * The main drawing method called in the Shapes class
+	 * see "obj.drawing();" in Driver.java (Line 38) 
+	 * It main Goal is to call the paint(Graphics g) method
 	 */
 	public void drawing() {
 		repaint(); // calls paintComponent()

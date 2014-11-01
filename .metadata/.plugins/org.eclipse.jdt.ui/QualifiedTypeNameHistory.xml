@@ -39,7 +39,6 @@
 <fullyQualifiedTypeName name="Line"/>
 <fullyQualifiedTypeName name="java.awt.Shape"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
-<fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="java.awt.Rectangle"/>
 <fullyQualifiedTypeName name="marc.com.Square"/>
 <fullyQualifiedTypeName name="Square"/>
@@ -49,7 +48,6 @@
 <fullyQualifiedTypeName name="TopMenu"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
-<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="DrawingPanel2"/>
 <fullyQualifiedTypeName name="DrawingPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="MyShape"/>
 <fullyQualifiedTypeName name="Triangle"/>
 <fullyQualifiedTypeName name="MyPolygon"/>
+<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
 </qualifiedTypeNameHistroy>

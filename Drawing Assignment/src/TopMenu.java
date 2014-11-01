@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FileDialog;
@@ -13,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -22,111 +22,132 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+public class TopMenu extends JPanel implements Serializable{
+	private static final long serialVersionUID = 1L;
 
-public class TopMenu extends JPanel {
-	//TODO
-	JButton lineBtn, circleBtn, triangleBtn, squareBtn, polygonBtn,
-			colorBtn, fillBtn;
-	
-	
+	/**
+	 * TopMenu components
+	 */
+	JButton lineBtn, circleBtn, triangleBtn, squareBtn, polygonBtn, colorBtn,
+			fillBtn;
+	JButton undoBtn, resetBtn, loadBtn, saveBtn, brushSizeBig, brushSizeSmall;
 
 	// variables
 	int buttonChoice = 1;
-	boolean fillOrOutline = true;
-	Color color = Color.BLUE;
+	boolean fillOrOutline = true; // set the fill to defualt True
+	Color color = Color.BLUE; // set color to default Blue
+
+	// create an instance of DrawingPanel to call the DrawingPanels repaint()
+	// method
 	DrawingPanel dp2;
-	Dimension d = new Dimension(60, 28);
-	
-	//======================
-	JButton undoBtn, resetBtn, loadBtn, saveBtn,brushSizeBig, brushSizeSmall;
+	Dimension d = new Dimension(60, 28); // Dimensions of the buttons
+
+	/**
+	 * Every time a shape has been completely drawn and finished, only then is
+	 * the shape, its colour, brushsize and whether its a filled or outlined
+	 * shape, is stored in separate ArrayLists but at the same index. The reason
+	 * for this is Undo, Rest and Saving and Loading shapes.
+	 */
 	ArrayList<MyShape> shapes = new ArrayList<MyShape>();
 	ArrayList<Color> colours = new ArrayList<Color>();
 	ArrayList<Integer> brushSizesList = new ArrayList<Integer>();
 	ArrayList<Boolean> fillList = new ArrayList<Boolean>();
 	Integer strokeSize = 1;
-	
-	FileDialog fDialogSave = new FileDialog(new Frame(),"Save", FileDialog.SAVE);
-	String pathSave = fDialogSave.getDirectory()+ fDialogSave.getFile();
-	FileDialog fDialogLoad = new FileDialog(new Frame(),"Load", FileDialog.LOAD);
-	String pathLoad = fDialogLoad.getDirectory()+ fDialogLoad.getFile();
-	File f = new File(pathSave);
-	
-	
 
+	
+	  FileDialog fDialogSave = new FileDialog(new Frame(),"Save",
+	  FileDialog.SAVE); String pathSave = fDialogSave.getDirectory()+
+	  fDialogSave.getFile(); FileDialog fDialogLoad = new FileDialog(new
+	  Frame(),"Load", FileDialog.LOAD); String pathLoad =
+	  fDialogLoad.getDirectory()+ fDialogLoad.getFile(); File f = new
+	  File(pathSave);
+	 
+
+	/**
+	 * Constructor
+	 */
 	public TopMenu() {
 
+		// Setting the size of the panel
 		Dimension size = getPreferredSize();
 		size.width = 800;
 		size.height = 40;
 		setPreferredSize(size);
-		addButtonsToMenuPanel(); // adding the buttons to the Panel
+
+		// A method to add all the components to the TopMenu
+		addButtonsToMenuPanel();
+
 		// Set the layout of the panel
 		setLayout(new FlowLayout()); // border Layout for the Buttons
-		//setBackground(Color.G);
 		setVisible(true);
-		//bottomPanel.setLayout(new FlowLayout());
+
+		// setDesign() is a method I created to give a 'Nimbus Look and Feel'
+		// Design
+		// to the Panel for a modern and unified look.
 		setDesign();
-	
+
 	}
 
 	/**
-	 * method to add things to the panel TODO Adding PAnel parts
+	 * method to add things to the panel
 	 */
 	void addButtonsToMenuPanel() {
 		lineBtn = new JButton();
 		lineBtn.setPreferredSize(d);
+		//Giving each button a separate icon
 		lineBtn.setIcon(new ImageIcon("src\\images\\line.png"));
+		//Adding my own Action Listener to the Button
 		lineBtn.addActionListener(new MyMouseListener());
-		
+
 		circleBtn = new JButton();
 		circleBtn.setPreferredSize(d);
 		circleBtn.setIcon(new ImageIcon("src\\images\\circle.png"));
 		circleBtn.addActionListener(new MyMouseListener());
-		
+
 		squareBtn = new JButton();
 		squareBtn.setPreferredSize(d);
 		squareBtn.setIcon(new ImageIcon("src\\images\\square.png"));
 		squareBtn.addActionListener(new MyMouseListener());
-		
+
 		triangleBtn = new JButton();
 		triangleBtn.setPreferredSize(d);
 		triangleBtn.setIcon(new ImageIcon("src\\images\\triangle.png"));
 		triangleBtn.addActionListener(new MyMouseListener());
-		
+
 		polygonBtn = new JButton();
 		polygonBtn.setPreferredSize(d);
 		polygonBtn.setIcon(new ImageIcon("src\\images\\poly.png"));
 		polygonBtn.addActionListener(new MyMouseListener());
-		
+
 		colorBtn = new JButton("Colour");
 		colorBtn.setPreferredSize(d);
 		colorBtn.setIcon(new ImageIcon("src\\images\\color.png"));
 		colorBtn.addActionListener(new MyMouseListener());
-		
+
 		fillBtn = new JButton("Outline");
-		fillBtn.setPreferredSize(new Dimension(75,28));
+		fillBtn.setPreferredSize(new Dimension(75, 28));
 		fillBtn.addActionListener(new MyMouseListener());
-		
+
 		undoBtn = new JButton("Undo");
-		undoBtn.setPreferredSize(new Dimension(70,28));
+		undoBtn.setPreferredSize(new Dimension(70, 28));
 		undoBtn.addActionListener(new MyMouseListener());
-		
+
 		resetBtn = new JButton("Reset");
-		resetBtn.setPreferredSize(new Dimension(70,28));
-		
+		resetBtn.setPreferredSize(new Dimension(70, 28));
+
 		resetBtn.addActionListener(new MyMouseListener());
-		
+
 		loadBtn = new JButton("Load");
 		loadBtn.addActionListener(new MyMouseListener());
-		
+
 		saveBtn = new JButton("Save");
 		saveBtn.addActionListener(new MyMouseListener());
-		
+
 		brushSizeBig = new JButton();
 		brushSizeBig.setPreferredSize(d);
 		brushSizeBig.setIcon(new ImageIcon("src\\images\\bigger.png"));
 		brushSizeBig.addActionListener(new MyMouseListener());
-		
+
 		brushSizeSmall = new JButton();
 		brushSizeSmall.setPreferredSize(d);
 		brushSizeSmall.setIcon(new ImageIcon("src\\images\\smaller.png"));
@@ -140,12 +161,10 @@ public class TopMenu extends JPanel {
 		add(brushSizeBig);
 		add(brushSizeSmall);
 		add(fillBtn);
-		//
 		add(undoBtn);
 		add(resetBtn);
 		add(loadBtn);
 		add(saveBtn);
-		
 
 	} // end of constructor
 
@@ -153,173 +172,184 @@ public class TopMenu extends JPanel {
 	 * Action Listener to determine which shape to draw
 	 * 
 	 */
-	private class MyMouseListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() instanceof JButton) {
-				if (e.getSource() == lineBtn) {
-					buttonChoice = 1;
-				} else if (e.getSource() == circleBtn) {
-					buttonChoice = 2;
-				} else if (e.getSource() == squareBtn) {
-					buttonChoice = 3;
-				} else if (e.getSource() == triangleBtn) {
-					buttonChoice = 4;
-				} else if (e.getSource() == polygonBtn) {
-					buttonChoice = 5;
-				}else if(e.getSource() == fillBtn){
-					if(fillOrOutline == true){
-						fillOrOutline = false;
-						fillBtn.setText("Fill");
-					}else{
-						fillOrOutline = true;
-						fillBtn.setText("Outline");
+private class MyMouseListener implements ActionListener {
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() instanceof JButton) {
+			if (e.getSource() == lineBtn) {
+				buttonChoice = 1; //Line
+			} else if (e.getSource() == circleBtn) {
+				buttonChoice = 2; //Circle
+			} else if (e.getSource() == squareBtn) {
+				buttonChoice = 3; //Square
+			} else if (e.getSource() == triangleBtn) {
+				buttonChoice = 4; //Triangle
+			} else if (e.getSource() == polygonBtn) {
+				buttonChoice = 5; //Polygon
+			} else if (e.getSource() == fillBtn) {
+				//If you click this button I want the display and functionality 
+				//to change between a fill or Outline
+				if (fillOrOutline == true) {
+					fillOrOutline = false;
+					fillBtn.setText("Fill");
+				} else {
+					fillOrOutline = true;
+					fillBtn.setText("Outline");
+				}
+			}else if (e.getSource() == colorBtn) {
+				
+				//Setting the Colour with a pop out box
+				color = JColorChooser.showDialog(null, "Choose a Colour",color);
+				
+			}else if (e.getSource() == undoBtn) { // Undo button
+					if (shapes.size() == 0)
+						return; //If there are no shapes on the screen left to undo
+					else {
+						// All the ArrayLists must be reset so they stay in
+						// sync
+						shapes.remove(shapes.size() - 1);
+						colours.remove(colours.size() - 1);
+						fillList.remove(fillList.size() - 1);
+						brushSizesList.remove(brushSizesList.size() - 1);
+						
+						//the canvas must be repainted after every Undo
+						dp2.repaint(); 
 					}
-				}else if(e.getSource() == colorBtn){
-					color = JColorChooser.showDialog(null, "Choose a Colour", color);
-
-				}if (e.getSource() instanceof JButton) {
-					if (e.getSource() == undoBtn) { // Undo button
-						if (shapes.size() == 0)
-							return;
-						else {
-							// All the ArrayLists must be reset so they stay in sync
-							shapes.remove(shapes.size() - 1);
-							colours.remove(colours.size() - 1);
-							fillList.remove(fillList.size() - 1);
-							brushSizesList.remove(brushSizesList.size() - 1);
-							dp2.repaint();
-						}
-					} else if (e.getSource() == resetBtn) { // Reset button
-						int dialogButton = JOptionPane.YES_NO_OPTION;
-						int dialogResult = JOptionPane.showConfirmDialog(null,
-								"Are you sure you want to reset?", "Reset",
-								dialogButton);
-						if (dialogResult == 0) {
-							shapes.clear(); // removes al th shapes from the
-											// arrayList
-							colours.clear();
-							fillList.clear();
-							brushSizesList.clear();
-							dp2.repaint();
-						}
-					} else if (e.getSource() == brushSizeBig) {
-							strokeSize += 2;
-							dp2.repaint();
-						if (strokeSize > 80){
-							strokeSize = 80; // dont let the brush get too big
-							
-						}
-					} else if (e.getSource() == brushSizeSmall) {
-						 strokeSize -= 2;
+				} else if (e.getSource() == resetBtn) { // Reset button
+					int dialogButton = JOptionPane.YES_NO_OPTION;
+					int dialogResult = JOptionPane.showConfirmDialog(null,
+							"Are you sure you want to reset?", "Reset",
+							dialogButton);
+					if (dialogResult == 0) {
+						
+						//If yes, clear all ArrayLists
+						shapes.clear(); 
+						colours.clear();
+						fillList.clear();
+						brushSizesList.clear();
+						
+						//Repaint the blank canvas
 						dp2.repaint();
-						if (strokeSize < 1){
-							strokeSize = 1;
-							
+					}
+				} else if (e.getSource() == brushSizeBig) {
+					//Increasing the size of the Brush
+					strokeSize += 2;
+					if (strokeSize > 80) {
+						strokeSize = 80; // don't let the brush get too big
+					}
+				} else if (e.getSource() == brushSizeSmall) {
+					//Reduce the size of the Brush
+					strokeSize -= 2;
+					if (strokeSize < 1) {
+						strokeSize = 1; //Don't let it get too small
+					}
+				} else if (e.getSource() == saveBtn) {
+					// Method to write objects to a file
+					ObjectOutputStream fileOut;
+					try {
+						FileDialog fDialog = new FileDialog(new Frame(),"Save", FileDialog.SAVE);
+						fDialog.setVisible(true);
+						String path = fDialog.getDirectory()+ fDialog.getFile();
+						//If the user doesn't put ".dat" at the end while saving a file,
+						//this automatically does it.
+						path += (path.contains(".dat") ? "" : ".dat");
+						File f = new File(path);
+						fileOut = new ObjectOutputStream(new FileOutputStream(f));
+						
+						//Write everything in unison 
+						for (int i = 0; i < shapes.size(); i++) {
+							fileOut.writeObject(shapes.get(i));
+							fileOut.writeObject(colours.get(i));
+							fileOut.writeBoolean(fillList.get(i));
+							fileOut.writeObject(brushSizesList.get(i));
 						}
-					}else if(e.getSource() == saveBtn){
-						//Method to write objects to a file
-						ObjectOutputStream  fileOut;
-							try {
-								  FileDialog fDialog = new FileDialog(new Frame(), "Save", FileDialog.SAVE);
-							        fDialog.setVisible(true);
-							        String path = fDialog.getDirectory() + fDialog.getFile();
-							        path+=(path.contains(".dat") ? "" : ".dat");
-							        File f = new File(path);
-								fileOut = new ObjectOutputStream(new FileOutputStream(f));
-								for(int i=0;i<shapes.size();i++){
-									fileOut.writeObject(shapes.get(i));
-									fileOut.writeObject(colours.get(i));
-									fileOut.writeBoolean(fillList.get(i));
-									fileOut.writeObject(brushSizesList.get(i));
-								}
-								fileOut.close();
-								//JOptionPane.showMessageDialog(null, "Saved");
-							        
-							} catch (IOException ex) {
-								// TODO Auto-generated catch block
-								ex.printStackTrace();
-							}
-						
-						
-					}else if(e.getSource() == loadBtn){
-						MyShape aShape;
-						Color aColor;
-						boolean abool;
-						Integer bs;
-						int i =1;
-						try {
-							shapes.clear(); // removes al th shapes from the arrayList
-							colours.clear();
-							fillList.clear();
-							brushSizesList.clear();
+						fileOut.close(); //close the fileOut
+					} catch (IOException ex) {
+						// TODO Auto-generated catch block
+						ex.printStackTrace();
+					}
+
+				} else if (e.getSource() == loadBtn) {
+					MyShape aShape;
+					Color aColor;
+					boolean abool;
+					Integer bs;
+					int i = 1;
+					try {
+						shapes.clear(); 
+						colours.clear();
+						fillList.clear();
+						brushSizesList.clear();
+						dp2.repaint();
+						FileDialog fDialog = new FileDialog(new Frame(),"Load", FileDialog.LOAD);
+						fDialog.setVisible(true);
+						String path = fDialog.getDirectory()+ fDialog.getFile();
+						File f = new File(path);
+						ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
+						aShape = (MyShape) in.readObject();
+						aColor = (Color) in.readObject();
+						abool = in.readBoolean();
+						bs = (Integer) in.readObject();
+						shapes.add(0, aShape);
+						colours.add(0, aColor);
+						fillList.add(0, abool);
+						brushSizesList.add(0, bs);
+						if (aShape != null) {
+							revalidate();
 							dp2.repaint();
-							FileDialog fDialog = new FileDialog(new Frame(), "Load", FileDialog.LOAD);
-					        fDialog.setVisible(true);
-					        String path = fDialog.getDirectory() + fDialog.getFile();
-					        File f = new File(path);
-							ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
-							aShape = (MyShape) in.readObject();
-							aColor = (Color) in.readObject();
-							abool = in.readBoolean();
-							bs = (Integer) in.readObject();
-							shapes.add(0,aShape);
-							colours.add(0, aColor);
-							fillList.add(0,abool);
-							brushSizesList.add(0,bs);
-							if(aShape != null){
-								revalidate();
-								dp2.repaint();
-							while(aShape != null){
-								aShape = (MyShape)in.readObject();
+							while (aShape != null) {
+								aShape = (MyShape) in.readObject();
 								aColor = (Color) in.readObject();
 								abool = in.readBoolean();
 								bs = (Integer) in.readObject();
 								shapes.add(i, aShape);
 								colours.add(i, aColor);
-								fillList.add(i,abool);
-								brushSizesList.add(i,bs);
+								fillList.add(i, abool);
+								brushSizesList.add(i, bs);
 								revalidate();
 								dp2.repaint();
 								i++;
-								}
 							}
-							in.close();
-							
-							
-						} catch (FileNotFoundException e2) {
-							// TODO Auto-generated catch block
-							e2.printStackTrace();
-						} catch (IOException e2) {
-							if(i > 1)
-								;
-							else{
-								System.out.println("IOError");
-							// TODO Auto-generated catch block
-							e2.printStackTrace();
-							}
-						} catch (ClassNotFoundException e2) {
+						}
+						in.close();
+
+					} catch (FileNotFoundException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					} catch (IOException e2) {
+						if (i > 1)
+							;
+						else {
+							System.out.println("IOError");
 							// TODO Auto-generated catch block
 							e2.printStackTrace();
 						}
+					} catch (ClassNotFoundException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
 					}
-
-			}
+				}
 		}
-	}// end of MyMouseLsitener
 	}
-	
-	public void setDrawingPanel2(DrawingPanel dp2){
+}// end of MyMouseLsitener
+
+	/**
+	 * This method is vital for the communication between this Panel and Drawing Panel
+	 * @param dp2
+	 */
+	public void setDrawingPanel2(DrawingPanel dp2) {
 		this.dp2 = dp2;
 	}
-	
-	//Method for setting the Nimbus feel and look
-			public final static void setDesign() {
-				try{
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-				}catch(Exception e){
-					System.out.println("Prob with setDesign()");
-				}
-				
-			}
+
+	/**
+	 * Method for setting the Nimbus feel and look
+	 */
+	public final static void setDesign() {
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (Exception e) {
+			System.out.println("Prob with setDesign()");
+		}
+
+	}
 }

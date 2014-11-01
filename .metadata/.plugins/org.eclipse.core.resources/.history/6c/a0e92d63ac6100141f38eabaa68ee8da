@@ -1,0 +1,32 @@
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.io.Serializable;
+
+public class Circle extends MyShape implements Serializable{
+
+	/**
+	 * 
+	 */
+
+	Point start, end;
+	
+	public Circle(){}
+	
+	public Circle(int x, int y, int x2, int y2) {
+		super(x,y,x2,y2);
+		//radius = r;
+		this.start = new Point(x,y);
+		this.end = new Point(x2,y2);
+	}
+
+	public void draw(Graphics2D g, boolean fill){
+		g.setColor(color);
+		int radius = (int)Math.round(start.distance(end));
+		if(fill == true)
+		g.fillOval(this.start.x - radius, this.start.y - radius, radius*2, radius*2);
+		g.drawOval(this.start.x - radius, this.start.y - radius, radius*2, radius*2);
+		
+	}
+
+
+}

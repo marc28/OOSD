@@ -3,25 +3,46 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-
+/**
+ * This is the main Driver class which combines the Frame and the Panels together
+ * to run in the main method.
+ * 
+ * @author marc
+ *
+ */
 public class Driver {
 
+	/**
+	 * Driver Constructor
+	 * Put everything together
+	 */
 	public Driver() {
-		JFrame frame = new JFrame("Drawing");
+		//Frame object with title
+		JFrame frame = new JFrame("Marc's Drawing Application"); 
 		frame.setVisible(true);
 		
+		//Close the frame when you click the 'X'
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//Create an instance of both Panels
+		//DrawPanel() takes an instance of TopMenu for communicating with each other
 		TopMenu topMenu = new TopMenu();
-		DrawingPanel obj = new DrawingPanel(topMenu);
+		DrawingPanel obj = new DrawingPanel(topMenu); 
+		
+		//Add both panels to the Frame
 		frame.add(topMenu, BorderLayout.NORTH);
 		frame.add(obj);
-		
 		frame.pack();
-		obj.drawing();
+		
+		//The drawing() method in the DrawingPanel() class calls the repaint() method
+		obj.drawing(); 
 		
 	}
 	
+	/**
+	 * Main method
+	 * 
+	 */
 	public static void main(String args []){
 		SwingUtilities.invokeLater(new Runnable()
 		{

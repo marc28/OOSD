@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="lineBtn" key="selection"/>
+		<item value="dp2" key="selection"/>
 		<list key="findhistory">
+			<item value="dp2"/>
+			<item value="drawing()"/>
+			<item value="outline"/>
 			<item value="lineBtn"/>
 			<item value="setDrawingPanel2"/>
 			<item value="polyOne"/>
 			<item value="fillOrOutline"/>
 			<item value="fillList"/>
-			<item value="strokeSize"/>
-			<item value="brushSizeBig"/>
-			<item value="brushSizesList"/>
 		</list>
 		<list key="replacehistory">
 			<item value="dp2.repaint();"/>
