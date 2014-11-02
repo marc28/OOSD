@@ -14,7 +14,7 @@ public class Driver {
 
 	/**
 	 * Driver Constructor
-	 * Puts everything together
+	 * Put everything together
 	 */
 	public Driver() {
 		//Frame object with title
@@ -33,6 +33,9 @@ public class Driver {
 		frame.add(topMenu, BorderLayout.NORTH);
 		frame.add(obj);
 		frame.pack();
+		
+		//The drawing() method in the DrawingPanel() class calls the repaint() method
+		obj.drawing(); 
 		
 	}
 	

@@ -27,6 +27,13 @@ public class DrawingPanel extends JPanel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private boolean isDrawing = false;
 
+	
+	/**
+	 * Default Constructor
+	 */
+	public DrawingPanel() {
+		this.repaint();
+	}
 
 	/**
 	 * 
@@ -36,7 +43,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 	 */
 	public DrawingPanel(TopMenu t) {
 		topMenu = t;
-		t.setDrawingPanel(this); //necessary for 2 separate Panels communicate
+		t.setDrawingPanel2(this); //necessary for 2 separate Panels communicate
 
 		//Set the size 
 		Dimension size = getPreferredSize();
@@ -112,7 +119,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 						//Update all the ArrayLists
 						topMenu.shapes.add(new Line(start.x, start.y, end.x,end.y));
 						topMenu.colours.add(topMenu.color);
-						topMenu.trueOrFalseList.add(true);
+						topMenu.fillList.add(true);
 						topMenu.brushSizesList.add(topMenu.strokeSize);
 						
 						//Set the isDrawing to false as shape has been completed
@@ -134,7 +141,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 						end = new Point(e.getX(), e.getY());
 						topMenu.shapes.add(new Circle(start.x, start.y, end.x,end.y));
 						topMenu.colours.add(topMenu.color);
-						topMenu.trueOrFalseList.add(topMenu.fillOrOutline);
+						topMenu.fillList.add(topMenu.fillOrOutline);
 						topMenu.brushSizesList.add(topMenu.strokeSize);
 						isDrawing = false;
 						clickCounter = 0;
@@ -152,7 +159,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 						topMenu.shapes.add(new Square(start.x, start.y, end.x,
 								end.y));
 						topMenu.colours.add(topMenu.color);
-						topMenu.trueOrFalseList.add(topMenu.fillOrOutline);
+						topMenu.fillList.add(topMenu.fillOrOutline);
 						topMenu.brushSizesList.add(topMenu.strokeSize);
 						repaint();
 						clickCounter = 0;
@@ -173,7 +180,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 						topMenu.shapes.add(new Triangle(start.x, start.y,
 								middle.x, middle.y, end.x, end.y));
 						topMenu.colours.add(topMenu.color);
-						topMenu.trueOrFalseList.add(topMenu.fillOrOutline);
+						topMenu.fillList.add(topMenu.fillOrOutline);
 						topMenu.brushSizesList.add(topMenu.strokeSize);
 						clickCounter = 0;
 						isDrawing = false;
@@ -200,7 +207,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 						topMenu.shapes.add(new MyPolygon(start, polyOne,
 								polyTwo, polyThree, polyFour, start));
 						topMenu.colours.add(topMenu.color);
-						topMenu.trueOrFalseList.add(topMenu.fillOrOutline);
+						topMenu.fillList.add(topMenu.fillOrOutline);
 						topMenu.brushSizesList.add(topMenu.strokeSize);
 						clickCounter = 0;
 						isDrawing = false;
@@ -291,10 +298,18 @@ public class DrawingPanel extends JPanel implements Serializable {
 		for (MyShape s : topMenu.shapes) {
 			g2d.setStroke(new BasicStroke(topMenu.brushSizesList.get(i)));
 			s.color = topMenu.colours.get(i);
-			s.draw(g2d, topMenu.trueOrFalseList.get(i));
+			s.draw(g2d, topMenu.fillList.get(i));
 			i++;
 		}
 
 	} // END of paint(Graphics g)
 
+	/**
+	 * The main drawing method called in the Shapes class
+	 * see "obj.drawing();" in Driver.java (Line 38) 
+	 * It main Goal is to call the paint(Graphics g) method
+	 */
+	public void drawing() {
+		repaint(); // calls paintComponent()
+	}
 }

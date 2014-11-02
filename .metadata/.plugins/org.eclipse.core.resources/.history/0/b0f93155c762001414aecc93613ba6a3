@@ -34,6 +34,9 @@ public class Driver {
 		frame.add(obj);
 		frame.pack();
 		
+		//The drawing() method in the DrawingPanel() class calls the repaint() method
+		//obj.drawing(); 
+		
 	}
 	
 	/**

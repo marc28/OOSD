@@ -22,7 +22,7 @@ public class Circle extends MyShape implements Serializable {
 	/**
 	 * Default Constructor
 	 */
-	public Circle() {}
+	//public Circle() {}
 
 	/**
 	 * Constructor which takes 4 ints to instantiate the 2 Points.

@@ -51,8 +51,17 @@ public class TopMenu extends JPanel implements Serializable{
 	ArrayList<MyShape> shapes = new ArrayList<MyShape>();
 	ArrayList<Color> colours = new ArrayList<Color>();
 	ArrayList<Integer> brushSizesList = new ArrayList<Integer>();
-	ArrayList<Boolean> trueOrFalseList = new ArrayList<Boolean>();
+	ArrayList<Boolean> fillList = new ArrayList<Boolean>();
 	Integer strokeSize = 1;
+
+	
+	  FileDialog fDialogSave = new FileDialog(new Frame(),"Save",
+	  FileDialog.SAVE); String pathSave = fDialogSave.getDirectory()+
+	  fDialogSave.getFile(); FileDialog fDialogLoad = new FileDialog(new
+	  Frame(),"Load", FileDialog.LOAD); String pathLoad =
+	  fDialogLoad.getDirectory()+ fDialogLoad.getFile(); File f = new
+	  File(pathSave);
+	 
 
 	/**
 	 * Constructor
@@ -72,7 +81,8 @@ public class TopMenu extends JPanel implements Serializable{
 		setLayout(new FlowLayout()); // border Layout for the Buttons
 		setVisible(true);
 
-		// setDesign() is a method I created to give a 'Nimbus Look and Feel' Design
+		// setDesign() is a method I created to give a 'Nimbus Look and Feel'
+		// Design
 		// to the Panel for a modern and unified look.
 		setDesign();
 
@@ -199,7 +209,7 @@ private class MyMouseListener implements ActionListener {
 						// sync
 						shapes.remove(shapes.size() - 1);
 						colours.remove(colours.size() - 1);
-						trueOrFalseList.remove(trueOrFalseList.size() - 1);
+						fillList.remove(fillList.size() - 1);
 						brushSizesList.remove(brushSizesList.size() - 1);
 						
 						//the canvas must be repainted after every Undo
@@ -215,7 +225,7 @@ private class MyMouseListener implements ActionListener {
 						//If yes, clear all ArrayLists
 						shapes.clear(); 
 						colours.clear();
-						trueOrFalseList.clear();
+						fillList.clear();
 						brushSizesList.clear();
 						
 						//Repaint the blank canvas
@@ -250,7 +260,7 @@ private class MyMouseListener implements ActionListener {
 						for (int i = 0; i < shapes.size(); i++) {
 							fileOut.writeObject(shapes.get(i));
 							fileOut.writeObject(colours.get(i));
-							fileOut.writeBoolean(trueOrFalseList.get(i));
+							fileOut.writeBoolean(fillList.get(i));
 							fileOut.writeObject(brushSizesList.get(i));
 						}
 						fileOut.close(); //close the fileOut
@@ -268,7 +278,7 @@ private class MyMouseListener implements ActionListener {
 					try {
 						shapes.clear(); 
 						colours.clear();
-						trueOrFalseList.clear();
+						fillList.clear();
 						brushSizesList.clear();
 						dp2.repaint();
 						FileDialog fDialog = new FileDialog(new Frame(),"Load", FileDialog.LOAD);
@@ -282,7 +292,7 @@ private class MyMouseListener implements ActionListener {
 						bs = (Integer) in.readObject();
 						shapes.add(0, aShape);
 						colours.add(0, aColor);
-						trueOrFalseList.add(0, abool);
+						fillList.add(0, abool);
 						brushSizesList.add(0, bs);
 						if (aShape != null) {
 							revalidate();
@@ -294,7 +304,7 @@ private class MyMouseListener implements ActionListener {
 								bs = (Integer) in.readObject();
 								shapes.add(i, aShape);
 								colours.add(i, aColor);
-								trueOrFalseList.add(i, abool);
+								fillList.add(i, abool);
 								brushSizesList.add(i, bs);
 								revalidate();
 								dp2.repaint();
@@ -327,7 +337,7 @@ private class MyMouseListener implements ActionListener {
 	 * This method is vital for the communication between this Panel and Drawing Panel
 	 * @param dp2
 	 */
-	public void setDrawingPanel(DrawingPanel dp2) {
+	public void setDrawingPanel2(DrawingPanel dp2) {
 		this.dp2 = dp2;
 	}
 

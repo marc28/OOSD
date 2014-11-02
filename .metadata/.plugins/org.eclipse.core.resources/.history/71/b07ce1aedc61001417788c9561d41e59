@@ -54,6 +54,15 @@ public class TopMenu extends JPanel implements Serializable{
 	ArrayList<Boolean> trueOrFalseList = new ArrayList<Boolean>();
 	Integer strokeSize = 1;
 
+	
+	 /* FileDialog fDialogSave = new FileDialog(new Frame(),"Save",
+	  FileDialog.SAVE); String pathSave = fDialogSave.getDirectory()+
+	  fDialogSave.getFile(); FileDialog fDialogLoad = new FileDialog(new
+	  Frame(),"Load", FileDialog.LOAD); String pathLoad =
+	  fDialogLoad.getDirectory()+ fDialogLoad.getFile(); File f = new
+	  File(pathSave);*/
+	 
+
 	/**
 	 * Constructor
 	 */

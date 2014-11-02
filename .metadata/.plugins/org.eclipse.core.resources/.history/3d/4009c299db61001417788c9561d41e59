@@ -27,6 +27,13 @@ public class DrawingPanel extends JPanel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private boolean isDrawing = false;
 
+	
+	/**
+	 * Default Constructor
+	 */
+	public DrawingPanel() {
+		this.repaint();
+	}
 
 	/**
 	 * 
@@ -36,7 +43,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 	 */
 	public DrawingPanel(TopMenu t) {
 		topMenu = t;
-		t.setDrawingPanel(this); //necessary for 2 separate Panels communicate
+		t.setDrawingPanel2(this); //necessary for 2 separate Panels communicate
 
 		//Set the size 
 		Dimension size = getPreferredSize();
@@ -297,4 +304,12 @@ public class DrawingPanel extends JPanel implements Serializable {
 
 	} // END of paint(Graphics g)
 
+	/**
+	 * The main drawing method called in the Shapes class
+	 * see "obj.drawing();" in Driver.java (Line 38) 
+	 * It main Goal is to call the paint(Graphics g) method
+	 */
+	public void drawing() {
+		repaint(); // calls paintComponent()
+	}
 }
